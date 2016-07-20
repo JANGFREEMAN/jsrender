@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script id="template" type="text/x-jsrender">
+        <div style = "color:red;padding:20px">
+            username:{{:username}}<br/>
+            age:{{:age}}
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        var data = [{username:"zhangdan",age:"22"},{username:"wangwu",age:"23"}];
+        $("#result").html(
+          $("#template").render(data)
+        );
+    </script>
+</body>
+</html>

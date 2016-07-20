@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script id="template" type="text/x-jsrender">
+        result:{{> html}}
+    </script>
+
+    <script type="text/javascript">
+        var data = {html:"<div>this is a div</div>"}
+        $("#result").html(
+          $("#template").render(data)
+        );
+    </script>
+</body>
+</html>

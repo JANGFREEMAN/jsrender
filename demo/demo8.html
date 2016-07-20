@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+<div id="result"></div>
+
+<script id="template" type="text/x-jsrender">
+      this is a title:
+      {{mytag}}
+            <p><b>{{:title}}</b></p>
+      {{/mytag}}
+ </script>
+
+<script type="text/javascript">
+    //自定义一个标签
+    $.views.tags("mytag", function(val) {
+        //this.tagCtx.render(val) 就是指渲染标签内变量部分
+        return this.tagCtx.render(val);
+    });
+
+    var data = {title:"this is a title"};
+
+    $("#result").html(
+            $("#template").render(data)
+    );
+
+</script>
+</body>
+</html>

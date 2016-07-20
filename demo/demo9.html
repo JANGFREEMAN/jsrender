@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+<div id="result"></div>
+
+<script id="template" type="text/x-jsrender">
+    {{range start = 0 end = 2 names}}
+      <div style = "color:red;padding:20px">
+           {{:name}}
+      </div>
+    {{/range}}
+ </script>
+
+<script type="text/javascript">
+    //自定义一个标签
+    $.views.tags("range", function(arr) {
+        //this.tagCtx.props.xx 用于获取传入标签的参数值
+        var start = this.tagCtx.props.start,
+            end = this.tagCtx.props.end,
+            html = "";
+        for(var i = start ;  i < end; i++){
+            //this.tagCtx.render(val) 就是指渲染标签内变量部分
+           html +=  this.tagCtx.render(arr[i]);
+            console.log(html);
+        }
+        return html;
+    });
+
+    var data = {
+        names:[
+            {name:"zhangsan"},
+            {name:"wangwu"},
+            {name:"zhaoliu"},
+            {name:"lisi"}
+        ]
+    }
+
+
+    $("#result").html(
+            $("#template").render(data)
+    );
+
+</script>
+</body>
+</html>

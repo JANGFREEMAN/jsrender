@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script id="template" type="text/x-jsrender">
+        {{fullName people}}{{/fullName}}
+    </script>
+
+    <script type="text/javascript">
+        //定义一个标签为fullName
+        $.views.tags("fullName", function(val) {
+            return val.username + " " + val.age;
+        });
+
+        var data = {people:{username:"zhaoliu",age:"22"}};
+
+        $("#result").html(
+                $("#template").render(data)
+        );
+
+    </script>
+</body>
+</html>

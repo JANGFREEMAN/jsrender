@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+<div id="result"></div>
+
+<script id="template" type="text/x-jsrender">
+    {{!-- 转换器也可以传入值和属性值--}}
+    {{toUpCase:firstname lastname resver = false }}
+ </script>
+
+<script type="text/javascript">
+
+    $.views.converters("toUpCase",function(first,lastname){
+        //获取属性值resver = true
+        var resver = this.tagCtx.props.resver;
+        if(resver){
+            return first.toUpperCase() + ":" + lastname.toUpperCase();
+        }else{
+            return first + ":" + lastname;
+        }
+    });
+
+    var data = {
+        firstname:"zhang",
+        lastname:"yongxiang"
+    }
+
+    $("#result").html(
+            $("#template").render(data)
+    );
+
+</script>
+</body>
+</html>
