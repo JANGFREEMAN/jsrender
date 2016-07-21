@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签的使用</title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jsrender.min.js"></script>
+</head>
+<body>
+<div id="result"></div>
+
+<script id="template" type="text/x-jsrender">
+    {{!-- DATA PATHS --}}
+    <div style = "height:100px;background:red;color:black;margin:50px">
+        {{:  username}}
+    </div>
+
+     {{!-- DATA PATHS  --}}
+    <div style = "height:100px;background:red;color:black;margin:50px">
+        {{:  address.city}}
+    </div>
+
+    {{!-- DATA PATHS 还可以通过角标读取数据 --}}
+    <div style = "height:100px;background:red;color:black;margin:50px">
+        {{:  nickname[0]}}
+    </div>
+
+     {{!-- DATA PATHS 还可以通过角标读取数据 --}}
+    <div style = "height:100px;background:red;color:black;margin:50px">
+        {{:  friends[0].username}}
+    </div>
+
+     {{!-- View  PATHS ,JsRender有一个对象为view，view依我的理解应该值得是用来表示被渲染视图的对象，可以通过#view.data 获取渲染视图的数据 --}}
+     <div style = "height:100px;background:red;color:black;margin:50px">
+        {{:#view.data.username}}
+     </div>
+
+ </script>
+
+<script type="text/javascript">
+
+    var data = {
+        username:"zhangsan",
+        nickname:["n1","n2"],
+        address:{province:"fujian",city:"sanming"},
+        friends:[{username:"wangwu"},{username:"zhaoliu"},{username:"lisi"}]
+    }
+
+    $.views.helpers({
+        username:"wangwu"
+    });
+
+
+    $("#result").html(
+            $("#template").render(data)
+    );
+
+</script>
+</body>
+</html>

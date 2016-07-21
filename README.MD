@@ -11,8 +11,12 @@ JsRender把需要渲染的页面放在一个区域块状中，称之为模板，
      Full name: {{:person.fullName()}}
     </script>
 ```
+
 #JsRender标签语法
 JsRender标签必须是这种格式：{{...}}，如果你想改成这种格式<%...%>，你可以这么修改```$.views.settings.delimiters("<%", "%>")```。
+
+#JsRender获取数据的几种方式
+JsRender根据数据源的路径获取数据，具体看[例子](./demo/demo13.html)
 
 #JsRender常用标签
 JsRender标签其实和JSP标签有很多类型的地方，下面介绍几种标签的使用用于解决项目的问题。
